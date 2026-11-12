@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ferramenta de análise de retrabalho – Mazuli Smart Projects</title>
+<style>
+:root{--bg:#fff;--fg:#1f2937;--mut:#6b7280;--card:#f3f6fb;--bd:#d6deea;--ac:#2f5597;--acf:#fff;--rd:#c0504d;--gn:#2e8b57;--wn:#fff4d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111827;--fg:#e5e7eb;--mut:#9ca3af;--card:#1b2536;--bd:#2f3b50;--ac:#6d9be0;--acf:#0b1220;--rd:#e07a77;--gn:#58c08a;--wn:#3a3216}}
+:root[data-theme="dark"]{--bg:#111827;--fg:#e5e7eb;--mut:#9ca3af;--card:#1b2536;--bd:#2f3b50;--ac:#6d9be0;--acf:#0b1220;--rd:#e07a77;--gn:#58c08a;--wn:#3a3216}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:960px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:21px;margin:0 0 2px}h2{font-size:17px;margin:22px 0 8px}h3{font-size:15px;margin:14px 0 6px}
+.sub{color:var(--mut);font-size:13px;margin:0 0 14px}
+nav{display:flex;gap:6px;margin:12px 0 16px;flex-wrap:wrap}
+nav button{border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:8px 14px;border-radius:8px;font:inherit;cursor:pointer}
+nav button.on{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin:10px 0}
+.warn{background:var(--wn);border:1px solid var(--bd);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px}
+.g{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+label{display:block;font-size:12px;color:var(--mut);margin-bottom:2px}
+input,select,textarea{width:100%;padding:7px 8px;border:1px solid var(--bd);border-radius:7px;background:var(--bg);color:var(--fg);font:inherit}
+button.b{background:var(--ac);color:var(--acf);border:0;padding:9px 14px;border-radius:8px;font:inherit;cursor:pointer;margin:6px 6px 0 0}
+button.s{background:transparent;color:var(--fg);border:1px solid var(--bd)}
+.ov{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid var(--bd);padding:5px 7px;text-align:left;white-space:nowrap}th{background:var(--card)}
+td button{border:0;background:none;color:var(--rd);cursor:pointer;font-size:15px}
+.k{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:10px 0}.k div{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px}.k b{display:block;font-size:20px}.k span{font-size:12px;color:var(--mut)}
+.bar{display:flex;align-items:center;gap:8px;font-size:13px;margin:3px 0}.bar i{display:block;height:12px;background:var(--ac);border-radius:3px}
+.fl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin:8px 0}.fl span{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:4px 8px}.fl .r{border-color:var(--rd);color:var(--rd)}
+svg{max-width:100%;height:auto}small{color:var(--mut)}
+</style></head><body><div class="w">
+<h1>Ferramenta de análise de retrabalho</h1>
+<p class="sub">Mazuli Smart Projects · Projetos de moldes de injeção plástica · Programação para Engenharia de Produção · Univille</p>
+<nav id="nav"><button data-t="ctx" class="on">Contexto</button><button data-t="reg">Registro de dados</button><button data-t="sim">Simulação</button></nav>
+
+<section id="ctx" class="on">
+<h2>Ambiente onde a ferramenta será aplicada</h2>
+<div class="card"><b>Empresa:</b> Mazuli Smart Projects, que desenvolve projetos de moldes de injeção plástica.<br>
+<b>Sistema:</b> processo de desenvolvimento dos projetos de moldes dentro do escritório de projetos.<br>
+<b>Problema:</b> retrabalho. Alterações identificadas em etapas avançadas podem exigir a revisão de componentes já desenvolvidos, aumentando o tempo do projeto e reduzindo a produtividade.<br>
+<b>Pergunta:</b> como reduzir a ocorrência de retrabalhos e o tempo de desenvolvimento dos projetos?</div>
+<div class="fl"><span>Recebimento das informações</span>→<span>Factibilidade</span>→<span>Conceito</span>→<span>Projeto 3D</span>→<span>Detalhamento</span>→<span>Revisão</span>→<span>Projeto aprovado?</span>→<span>Sim: Liberação</span><span class="r">Não: Correção → retorno à etapa necessária → nova revisão</span></div>
+<h2>Solução proposta (dados da programação)</h2>
+<div class="card">A ferramenta reúne os Passos 3 e 4 da metodologia do bimestre anterior em um único programa:
+<ol><li><b>Registro de dados:</b> projetos concluídos (tempo de cada etapa) e retrabalhos (etapa onde foi identificado, causa, etapa para correção, tempo de correção), equivalentes aos quadros de coleta definidos no trabalho anterior.</li>
+<li><b>Resumo:</b> quantidade de retrabalhos por causa e por etapa de identificação.</li>
+<li><b>Simulação:</b> modelo do fluxo com a decisão “Projeto aprovado?”, em que a reprovação leva a uma correção e ao retorno a uma etapa anterior. Usa simulação de Monte Carlo (milhares de projetos simulados) com parâmetros estimados dos dados registrados.</li></ol>
+<b>Tecnologia:</b> HTML e JavaScript, executados no navegador, sem instalação. Os dados ficam salvos no navegador do usuário.<br>
+<b>Variáveis de entrada:</b> tempos por etapa, tempo de correção, probabilidade de reprovação, etapas de retorno. <b>Saídas:</b> tempo total de desenvolvimento, nº de retornos e proporção de projetos com retrabalho.</div>
+<div class="warn"><b>Estado do projeto:</b> início do desenvolvimento. Dados reais da empresa ainda não foram coletados, por isso a ferramenta começa vazia. Os botões de demonstração usam dados <b>fictícios</b>, apenas para testar o funcionamento.</div>
+</section>
+
+<section id="reg">
+<h2>Projetos concluídos</h2>
+<div class="card"><div class="g" id="fp"></div><button class="b" id="addp">Adicionar projeto</button></div>
+<div class="ov"><table id="tp"></table></div>
+<h2>Registro de retrabalhos</h2>
+<div class="card"><div class="g">
+<div><label>Projeto</label><select id="rp"></select></div>
+<div><label>Etapa onde foi identificado</label><select id="re"></select></div>
+<div><label>Problema / causa</label><select id="rc"></select></div>
+<div><label>Etapa para correção</label><select id="rd"></select></div>
+<div><label>Tempo de correção (h)</label><input id="rt" type="number" min="0" step="0.5"></div></div>
+<button class="b" id="addr">Adicionar retrabalho</button></div>
+<div class="ov"><table id="tr"></table></div>
+<h2>Resumo</h2><div id="res"></div>
+<h2>Dados e demonstração</h2>
+<div class="card"><button class="b" id="demo">Carregar dados de demonstração (fictícios)</button><button class="b s" id="clr">Limpar tudo</button><button class="b s" id="exp">Exportar dados</button><button class="b s" id="imp">Importar dados</button>
+<textarea id="io" rows="5" placeholder="Para exportar, clique em Exportar e copie o texto. Para importar, cole o texto aqui e clique em Importar." style="margin-top:8px"></textarea></div>
+</section>
+
+<section id="sim">
+<h2>Parâmetros da simulação</h2>
+<div class="card"><p class="sub">Tempos em horas, no formato mínimo / mais provável / máximo (distribuição triangular). Preencha manualmente ou estime a partir dos dados registrados.</p>
+<div class="ov"><table id="tpar"></table></div>
+<div class="g" style="margin-top:10px">
+<div><label>Prob. de reprovação na revisão (%)</label><input id="pp" type="number" min="0" max="100"></div>
+<div><label>Parte do tempo refeita no retorno (%)</label><input id="pf" type="number" min="0" max="100" value="100"></div>
+<div><label>Nº de projetos simulados</label><input id="pn" type="number" min="100" max="50000" value="5000"></div>
+<div><label>Cenário B: redução da reprovação (%)</label><input id="pb" type="number" min="0" max="100" value="0"></div></div>
+<p class="sub">Retorno à etapa (peso %): <span id="wl"></span></p>
+<button class="b" id="est">Estimar a partir dos registros</button><button class="b" id="run">Simular</button></div>
+<div class="warn">Hipótese do modelo: ao voltar para uma etapa, o projeto percorre novamente as etapas seguintes até uma nova revisão. A parte do tempo refeita é ajustável. Os resultados só têm valor real com dados reais da empresa.</div>
+<div id="out"></div>
+</section>
+</div>
+<script>
+var ET=["Análise das informações","Factibilidade","Conceito","Projeto 3D","Detalhamento","Revisão"];
+var DEST=["Factibilidade","Conceito","Projeto 3D","Detalhamento"];
+var CA=["Informações incompletas","Mudança no produto","Necessidade identificada na revisão","Interferência entre componentes","Alteração de mecanismo","Outros"];
+var S={proj:[],ret:[]},K="mazuli_retrabalho_v1";
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function load(){try{var d=JSON.parse(localStorage.getItem(K)||"null");if(d&&d.proj&&d.ret)S=d}catch(e){}}
+function num(v){var n=parseFloat(v);return isFinite(n)?n:NaN}
+function fx(n,d){return isFinite(n)?n.toFixed(d===undefined?1:d).replace(".",","):"–"}
+function opts(a){return a.map(function(x,i){return '<option value="'+i+'">'+esc(x)+'</option>'}).join("")}
+// abas
+document.querySelectorAll("#nav button").forEach(function(b){b.onclick=function(){document.querySelectorAll("#nav button").forEach(function(x){x.classList.remove("on")});document.querySelectorAll("section").forEach(function(x){x.classList.remove("on")});b.classList.add("on");$(b.dataset.t).classList.add("on")}});
+// formulário de projeto
+$("fp").innerHTML='<div><label>Projeto (identificação)</label><input id="pn0"></div>'+ET.map(function(e,i){return '<div><label>'+e+' (h)</label><input id="p'+i+'" type="number" min="0" step="0.5"></div>'}).join("");
+$("rp").innerHTML="";$("re").innerHTML=opts(ET);$("rc").innerHTML=opts(CA);$("rd").innerHTML=opts(DEST);
+function retOf(i){return S.ret.filter(function(r){return r.p===i})}
+function totalOf(p,i){var c=retOf(i).reduce(function(a,r){return a+r.t},0);return p.t.reduce(function(a,b){return a+b},0)+c}
+$("addp").onclick=function(){var n=$("pn0").value.trim(),t=[];if(!n){alert("Informe a identificação do projeto.");return}
+for(var i=0;i<6;i++){var v=num($("p"+i).value);if(!isFinite(v)||v<0){alert("Preencha o tempo de: "+ET[i]);return}t.push(v)}
+S.proj.push({n:n,t:t});save();$("pn0").value="";for(i=0;i<6;i++)$("p"+i).value="";draw()};
+$("addr").onclick=function(){if(!S.proj.length){alert("Cadastre um projeto antes.");return}var t=num($("rt").value);if(!isFinite(t)||t<0){alert("Informe o tempo de correção.");return}
+S.ret.push({p:+$("rp").value,e:+$("re").value,c:+$("rc").value,d:+$("rd").value,t:t});save();$("rt").value="";draw()};
+function del(k,i){S[k].splice(i,1);if(k==="proj")S.ret=S.ret.filter(function(r){return r.p<S.proj.length}).map(function(r){return r});save();draw()}
+function draw(){
+ var rp=$("rp"),cur=rp.value;rp.innerHTML=S.proj.map(function(p,i){return '<option value="'+i+'">'+esc(p.n)+'</option>'}).join("");if(cur&&+cur<S.proj.length)rp.value=cur;
+ $("tp").innerHTML='<tr><th>Projeto</th>'+ET.map(function(e){return "<th>"+e+" (h)</th>"}).join("")+'<th>Correções (h)</th><th>Nº retrabalhos</th><th>Tempo total (h)</th><th></th></tr>'+
+ (S.proj.length?S.proj.map(function(p,i){var r=retOf(i);return "<tr><td>"+esc(p.n)+"</td>"+p.t.map(function(x){return "<td>"+fx(x)+"</td>"}).join("")+"<td>"+fx(r.reduce(function(a,x){return a+x.t},0))+"</td><td>"+r.length+"</td><td>"+fx(totalOf(p,i))+'</td><td><button data-d="proj" data-i="'+i+'" title="Excluir">✕</button></td></tr>'}).join(""):'<tr><td colspan="11">Nenhum projeto registrado.</td></tr>');
+ $("tr").innerHTML='<tr><th>Projeto</th><th>Identificado em</th><th>Problema / causa</th><th>Retorno para</th><th>Correção (h)</th><th></th></tr>'+
+ (S.ret.length?S.ret.map(function(r,i){return "<tr><td>"+esc((S.proj[r.p]||{n:"?"}).n)+"</td><td>"+ET[r.e]+"</td><td>"+CA[r.c]+"</td><td>"+DEST[r.d]+"</td><td>"+fx(r.t)+'</td><td><button data-d="ret" data-i="'+i+'" title="Excluir">✕</button></td></tr>'}).join(""):'<tr><td colspan="6">Nenhum retrabalho registrado.</td></tr>');
+ document.querySelectorAll("td button").forEach(function(b){b.onclick=function(){del(b.dataset.d,+b.dataset.i)}});
+ var h="";if(!S.proj.length&&!S.ret.length)h="<p class='sub'>O resumo aparece quando houver dados registrados.</p>";else{
+  var np=S.proj.length,cp=S.proj.filter(function(p,i){return retOf(i).length>0}).length;
+  h='<div class="k"><div><b>'+np+'</b><span>projetos</span></div><div><b>'+S.ret.length+'</b><span>retrabalhos</span></div><div><b>'+(np?fx(100*cp/np,0)+"%":"–")+'</b><span>projetos com retrabalho</span></div><div><b>'+(np?fx(S.proj.reduce(function(a,p,i){return a+totalOf(p,i)},0)/np):"–")+'</b><span>tempo total médio (h)</span></div></div>';
+  h+="<h3>Retrabalhos por causa</h3>"+cnt(CA,"c")+"<h3>Retrabalhos por etapa onde foram identificados</h3>"+cnt(ET,"e")+"<h3>Retrabalhos por etapa de retorno</h3>"+cnt(DEST,"d")}
+ $("res").innerHTML=h;params()}
+function cnt(L,k){var c=L.map(function(_,i){return S.ret.filter(function(r){return r[k]===i}).length}),m=Math.max.apply(null,c.concat([1]));
+ return L.map(function(l,i){return '<div class="bar"><span style="min-width:210px">'+l+'</span><i style="width:'+(c[i]/m*200)+'px"></i><span>'+c[i]+'</span></div>'}).join("")}
+// parâmetros
+function params(){if($("tpar").dataset.ok)return;
+ var rows=ET.map(function(e,i){return "<tr><td>"+e+'</td><td><input id="a'+i+'" type="number" step="0.5"></td><td><input id="m'+i+'" type="number" step="0.5"></td><td><input id="z'+i+'" type="number" step="0.5"></td></tr>'}).join("");
+ rows+='<tr><td>Tempo de correção</td><td><input id="ac" type="number" step="0.5"></td><td><input id="mc" type="number" step="0.5"></td><td><input id="zc" type="number" step="0.5"></td></tr>';
+ $("tpar").innerHTML="<tr><th>Etapa</th><th>Mínimo</th><th>Mais provável</th><th>Máximo</th></tr>"+rows;$("tpar").dataset.ok=1;
+ $("wl").innerHTML=DEST.map(function(d,i){return d+' <input id="w'+i+'" type="number" min="0" style="width:60px;display:inline-block">'}).join(" · ")}
+function med(a){a=a.slice().sort(function(x,y){return x-y});var n=a.length;return n%2?a[(n-1)/2]:(a[n/2-1]+a[n/2])/2}
+$("est").onclick=function(){if(!S.proj.length){alert("Registre ao menos um projeto.");return}
+ for(var i=0;i<6;i++){var v=S.proj.map(function(p){return p.t[i]});$("a"+i).value=Math.min.apply(null,v);$("m"+i).value=med(v);$("z"+i).value=Math.max.apply(null,v)}
+ if(S.ret.length){var c=S.ret.map(function(r){return r.t});$("ac").value=Math.min.apply(null,c);$("mc").value=med(c);$("zc").value=Math.max.apply(null,c);
+  for(i=0;i<4;i++)$("w"+i).value=Math.round(100*S.ret.filter(function(r){return r.d===i}).length/S.ret.length)}
+ $("pp").value=Math.round(100*S.proj.filter(function(p,i){return retOf(i).length>0}).length/S.proj.length)};
+function tri(a,m,b){if(b<=a)return a;var u=Math.random(),c=(m-a)/(b-a);return u<c?a+Math.sqrt(u*(b-a)*(m-a)):b-Math.sqrt((1-u)*(b-a)*(b-m))}
+function rd(id){return num($(id).value)}
+function sim(P,red,N){var T=[],R=[];
+ for(var k=0;k<N;k++){var t=0,ret=0,i;for(i=0;i<5;i++)t+=tri(P.s[i][0],P.s[i][1],P.s[i][2]);
+  while(true){t+=tri(P.s[5][0],P.s[5][1],P.s[5][2]);if(ret>=50||Math.random()>=P.p*(1-red))break;
+   var u=Math.random()*P.ws,r=0,acc=P.w[0];while(u>acc&&r<3){r++;acc+=P.w[r]}
+   t+=tri(P.c[0],P.c[1],P.c[2]);for(i=r+1;i<=4;i++)t+=P.f*tri(P.s[i][0],P.s[i][1],P.s[i][2]);ret++}
+  T.push(t);R.push(ret)}return{T:T,R:R}}
+function pct(a,q){var s=a.slice().sort(function(x,y){return x-y});return s[Math.min(s.length-1,Math.floor(q*s.length))]}
+function mean(a){return a.reduce(function(x,y){return x+y},0)/a.length}
+$("run").onclick=function(){var P={s:[],c:[],w:[],p:rd("pp")/100,f:rd("pf")/100},N=Math.min(50000,Math.max(100,rd("pn")||5000)),red=(rd("pb")||0)/100,i,bad=0;
+ for(i=0;i<6;i++){var s=[rd("a"+i),rd("m"+i),rd("z"+i)];if(s.some(isNaN)||s[0]>s[1]||s[1]>s[2])bad=1;P.s.push(s)}
+ P.c=[rd("ac"),rd("mc"),rd("zc")];if(P.c.some(isNaN)||P.c[0]>P.c[1]||P.c[1]>P.c[2])bad=1;
+ for(i=0;i<4;i++)P.w.push(rd("w"+i)||0);P.ws=P.w.reduce(function(a,b){return a+b},0);
+ if(bad||isNaN(P.p)||isNaN(P.f)||P.ws<=0){$("out").innerHTML='<div class="warn">Preencha todos os parâmetros (mínimo ≤ mais provável ≤ máximo), a probabilidade de reprovação e os pesos de retorno. Use “Estimar a partir dos registros” ou os dados de demonstração.</div>';return}
+ var A=sim(P,0,N),B=red>0?sim(P,red,N):null;
+ function kp(x,n){return '<h3>'+n+'</h3><div class="k"><div><b>'+fx(mean(x.T))+' h</b><span>tempo total médio</span></div><div><b>'+fx(pct(x.T,.5))+' h</b><span>mediana</span></div><div><b>'+fx(pct(x.T,.9))+' h</b><span>percentil 90</span></div><div><b>'+fx(mean(x.R),2)+'</b><span>retornos por projeto</span></div><div><b>'+fx(100*x.R.filter(function(r){return r>0}).length/N,0)+'%</b><span>com retrabalho</span></div></div>'}
+ $("out").innerHTML='<h2>Resultados da simulação ('+N+' projetos)</h2>'+kp(A,B?"Cenário A – processo como informado":"Resultado")+(B?kp(B,"Cenário B – reprovação reduzida em "+fx(red*100,0)+"%"):"")+hist(A.T,B&&B.T)+'<p class="sub">Resultados válidos somente para os parâmetros informados. Com dados de demonstração, os números são fictícios.</p>'};
+function hist(a,b){var all=b?a.concat(b):a,lo=Math.min.apply(null,all),hi=Math.max.apply(null,all),nb=24,w=(hi-lo)/nb||1;
+ function bins(x){var c=Array(nb).fill(0);x.forEach(function(v){c[Math.min(nb-1,Math.floor((v-lo)/w))]++});return c}
+ var ca=bins(a),cb=b?bins(b):null,mx=Math.max.apply(null,ca.concat(cb||[1])),W=560,H=190,bw=W/nb,s='<svg viewBox="0 0 600 240" role="img" aria-label="Histograma do tempo total de desenvolvimento">';
+ ca.forEach(function(c,i){var h=c/mx*H;s+='<rect x="'+(20+i*bw)+'" y="'+(200-h)+'" width="'+(bw-1)+'" height="'+h+'" fill="var(--ac)" opacity="'+(cb?.6:.9)+'"/>'});
+ if(cb)cb.forEach(function(c,i){var h=c/mx*H;s+='<rect x="'+(20+i*bw)+'" y="'+(200-h)+'" width="'+(bw-1)+'" height="'+h+'" fill="var(--gn)" opacity=".6"/>'});
+ s+='<line x1="20" y1="200" x2="580" y2="200" stroke="var(--mut)"/><text x="20" y="218" font-size="12" fill="var(--mut)">'+fx(lo,0)+' h</text><text x="580" y="218" font-size="12" fill="var(--mut)" text-anchor="end">'+fx(hi,0)+' h</text><text x="300" y="234" font-size="12" fill="var(--mut)" text-anchor="middle">Tempo total de desenvolvimento'+(cb?" (azul: A, verde: B)":"")+'</text></svg>';return '<h3>Distribuição do tempo total</h3>'+s}
+// demonstração e dados
+$("demo").onclick=function(){if(S.proj.length&&!confirm("Substituir os dados atuais pelos dados de demonstração?"))return;
+ S={proj:[{n:"DEMO-1 (fictício)",t:[3,5,7,50,26,8]},{n:"DEMO-2 (fictício)",t:[2,4,9,62,31,10]},{n:"DEMO-3 (fictício)",t:[4,6,6,45,22,7]},{n:"DEMO-4 (fictício)",t:[3,8,10,70,35,12]}],
+ ret:[{p:0,e:5,c:0,d:1,t:6},{p:0,e:5,c:3,d:2,t:4},{p:1,e:5,c:4,d:2,t:9},{p:1,e:4,c:1,d:3,t:3},{p:3,e:5,c:3,d:2,t:5}]};save();$("tpar").dataset.ok="";draw();alert("Dados de demonstração carregados. Eles são fictícios.")};
+$("clr").onclick=function(){if(confirm("Apagar todos os dados registrados?")){S={proj:[],ret:[]};save();draw()}};
+$("exp").onclick=function(){$("io").value=JSON.stringify(S);$("io").select()};
+$("imp").onclick=function(){try{var d=JSON.parse($("io").value);if(!d.proj||!d.ret)throw 0;S=d;save();draw()}catch(e){alert("Texto inválido. Cole o conteúdo exportado.")}};
+load();draw();
+</script></body></html>
